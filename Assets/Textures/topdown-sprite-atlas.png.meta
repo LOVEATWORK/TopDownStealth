@@ -48,10 +48,10 @@ TextureImporter:
     - name: character_sprite
       rect:
         serializedVersion: 2
-        x: 0
-        y: 90
-        width: 206
-        height: 144
+        x: 30
+        y: 58
+        width: 145
+        height: 208
       alignment: 0
       pivot: {x: .5, y: .5}
     - name: cannon_sprite

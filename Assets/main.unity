@@ -195,8 +195,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5c46ae9f78af4fe6b026bfb0267a8e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 246497158}
-  speed: 100
+  moveSpeed: 3
+  turnSpeed: 5
 --- !u!61 &299799892
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -206,8 +206,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 2.05999994, y: 1.44000006}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 1.51103449, y: 2.14581299}
+  m_Center: {x: -.00560164452, y: .00560152531}
 --- !u!50 &299799893
 Rigidbody2D:
   m_ObjectHideFlags: 0

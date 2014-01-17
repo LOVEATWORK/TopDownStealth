@@ -74,6 +74,58 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
+--- !u!1 &159408314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 159408315}
+  m_Layer: 0
+  m_Name: areaWatchEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &159408315
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 159408314}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 445219381}
+--- !u!1 &179821768
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 179821769}
+  m_Layer: 0
+  m_Name: areaWatchStart
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &179821769
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 179821768}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 445219381}
 --- !u!1 &246497154
 GameObject:
   m_ObjectHideFlags: 0
@@ -333,9 +385,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 445219379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.73560619, y: 2.14319134, z: 0}
+  m_LocalPosition: {x: 10.2643433, y: 5.48347521, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 159408315}
+  - {fileID: 179821769}
   m_Father: {fileID: 2059539599}
 --- !u!114 &445219382
 MonoBehaviour:
@@ -348,7 +402,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdaf649f4a62b4d5a82af5c057288429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  areaWatchStart: {fileID: 179821769}
+  areaWatchEnd: {fileID: 159408315}
   rotationSpeed: 2
+  sightRadius: 5
+  spotted: {fileID: 0}
 --- !u!1 &533954104
 GameObject:
   m_ObjectHideFlags: 0

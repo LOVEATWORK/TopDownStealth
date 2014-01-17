@@ -232,7 +232,7 @@ GameObject:
   - 50: {fileID: 299799893}
   - 61: {fileID: 299799892}
   - 114: {fileID: 299799891}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,6 +348,7 @@ GameObject:
   - 4: {fileID: 445219381}
   - 212: {fileID: 445219380}
   - 114: {fileID: 445219382}
+  - 61: {fileID: 445219384}
   m_Layer: 0
   m_Name: Gun
   m_TagString: Untagged
@@ -407,6 +408,20 @@ MonoBehaviour:
   rotationSpeed: 2
   sightRadius: 5
   spotted: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 256
+--- !u!61 &445219384
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 445219379}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 2.94829535, y: 2.92000008}
+  m_Center: {x: -.0241470337, y: 0}
 --- !u!1 &533954104
 GameObject:
   m_ObjectHideFlags: 0

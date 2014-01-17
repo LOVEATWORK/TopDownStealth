@@ -8,6 +8,7 @@ public class towerControllerScript : MonoBehaviour {
 	public float rotationSpeed = 2f;
 	public float sightRadius = 5;
 	public Collider2D spotted;
+	public LayerMask playerLayer;
 
 	//values for internal use
 	private float _lookRotation;
@@ -36,31 +37,28 @@ public class towerControllerScript : MonoBehaviour {
 			//create the rotation we need to be in to look at the target
 			// _lookRotation = Vector3.Angle(transform.position, player.position);
 
-			Debug.Log(Mathf.Acos(Vector3.Dot(transform.position.normalized, player.position.normalized)));
+			// Debug.Log(Mathf.Acos(Vector3.Dot(transform.position.normalized, player.position.normalized)));
 
-			targetPoint = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z) - transform.position;
-			targetRotation = Quaternion.LookRotation (-targetPoint, Vector3.up);
-			transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
+			// targetPoint = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z) - transform.position;
+			// targetRotation = Quaternion.LookRotation (-targetPoint, Vector3.up);
+			// transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
 
 			
 			
 			//rotate us over time according to speed until we are in the required rotation
-			transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, _lookRotation), Time.deltaTime * rotationSpeed);
+			// transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, _lookRotation), Time.deltaTime * rotationSpeed);
 			// Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, targetAngle), turnSpeed * Time.deltaTime);
 
 		} else {
 			Spin ();	
 		}
-
-
-
 	}
 
 	void Raycasting() {
-
 		Debug.DrawLine (areaWatchStart.position, areaWatchEnd.position, Color.white);
-		spotted = Physics2D.OverlapCircle (transform.position, sightRadius);
+		spotted = Physics2D.OverlapCircle (transform.position, sightRadius, playerLayer);
 
+		Debug.Log (spotted);
 
 	}
 

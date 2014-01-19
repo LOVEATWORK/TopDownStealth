@@ -6,6 +6,7 @@ public class characterControllerScript : MonoBehaviour {
 	public float moveSpeed = 10f;
 	public float turnSpeed = 4f;
 	private Vector3 moveDirection;
+	private Vector3 moveToward;
 
 	void Start() {
 
@@ -19,7 +20,7 @@ public class characterControllerScript : MonoBehaviour {
 
 		if (Input.GetButton ("Fire1")) {
 				
-			Vector3 moveToward = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			moveToward = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 			moveDirection = moveToward - currentPosition;
 			moveDirection.z = 0;
 			moveDirection.Normalize();
@@ -30,7 +31,14 @@ public class characterControllerScript : MonoBehaviour {
 		transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, targetAngle), turnSpeed * Time.deltaTime);
 
 		Vector3 target = moveDirection * moveSpeed + currentPosition;
-		transform.position = Vector3.Lerp (currentPosition, target, Time.deltaTime);
+
+		if (Mathf.Round(transform.position.x) != Mathf.Round(moveToward.x) && Mathf.Round(transform.position.y) != Mathf.Round(moveToward.y)) {
+			transform.position = Vector3.Lerp (currentPosition, target, Time.deltaTime);		
+		} else {
+			rigidbody2D.velocity = Vector3.zero;
+
+		}
+	
 	}
 }
 

@@ -6,6 +6,7 @@ public class towerControllerScript : MonoBehaviour {
 	public Transform areaWatchStart;
 	public Transform areaWatchEnd;
 	public float rotationSpeed = 2f;
+	public float agression = 5f;
 	public float sightRadius = 5;
 	public Collider2D spotted;
 	public LayerMask playerLayer;
@@ -29,25 +30,13 @@ public class towerControllerScript : MonoBehaviour {
 		Raycasting ();
 
 		if (spotted != null) {
+
 			target = spotted.gameObject;
 
-			//find the vector pointing from our position to the target
-			// _direction = (player.position - transform.position).normalized;
+			float angle = Mathf.Atan2(target.transform.position.y, target.transform.position.x) * Mathf.Rad2Deg;
+			float str = Mathf.Min(agression * Time.deltaTime, 1);
+			transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(new Vector3(0, 0, angle)), str);
 
-			//create the rotation we need to be in to look at the target
-			// _lookRotation = Vector3.Angle(transform.position, player.position);
-
-			// Debug.Log(Mathf.Acos(Vector3.Dot(transform.position.normalized, player.position.normalized)));
-
-			// targetPoint = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z) - transform.position;
-			// targetRotation = Quaternion.LookRotation (-targetPoint, Vector3.up);
-			// transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 2.0f);
-
-			
-			
-			//rotate us over time according to speed until we are in the required rotation
-			// transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(0, 0, _lookRotation), Time.deltaTime * rotationSpeed);
-			// Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, targetAngle), turnSpeed * Time.deltaTime);
 
 		} else {
 			Spin ();	
@@ -57,9 +46,6 @@ public class towerControllerScript : MonoBehaviour {
 	void Raycasting() {
 		Debug.DrawLine (areaWatchStart.position, areaWatchEnd.position, Color.white);
 		spotted = Physics2D.OverlapCircle (transform.position, sightRadius, playerLayer);
-
-		Debug.Log (spotted);
-
 	}
 
 	void Spin() {

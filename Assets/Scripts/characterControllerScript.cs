@@ -18,17 +18,12 @@ public class characterControllerScript : MonoBehaviour {
 
 		Vector3 currentPosition = transform.position;
 
-		if (Input.GetButton ("Fire1")) {
-				
-			moveToward = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			moveDirection = moveToward - currentPosition;
-			moveDirection.z = 0;
+		if (Input.GetButton ("Fire2")) {
+			moveDirection = getMoveDirection(Input.mousePosition);
 			moveDirection.Normalize();
+		
 
-		}
-
-		float targetAngle = Mathf.Atan2 (moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-		transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, targetAngle), turnSpeed * Time.deltaTime);
+		RotateToMouseClick (moveDirection.x, moveDirection.y);
 
 		Vector3 target = moveDirection * moveSpeed + currentPosition;
 
@@ -38,7 +33,45 @@ public class characterControllerScript : MonoBehaviour {
 			rigidbody2D.velocity = Vector3.zero;
 
 		}
+		}
+
+		if (Input.GetButtonDown ("Fire1")) {
+		
+			moveToward = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+			moveDirection = getMoveDirection(Input.mousePosition);
+			// moveDirection.Normalize();
+
+			// RotateToMouseClick(moveDirection.x, moveDirection.y);
+			transform.rotation = Quaternion.Euler(moveDirection);
+
+
+			WeaponScript weapon = GetComponent<WeaponScript>();
+
+			if (weapon != false)
+				weapon.Attack(false);
+
+
+		
+		}
 	
+	}
+
+	void RotateToMouseClick(float x, float y) {
+
+		float targetAngle = Mathf.Atan2 (y, x) * Mathf.Rad2Deg;
+		transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, targetAngle), turnSpeed * Time.deltaTime);
+
+	}
+
+	Vector3 getMoveDirection(Vector3 target) {
+
+		moveToward = Camera.main.ScreenToWorldPoint(target);
+		moveDirection = moveToward - transform.position;
+		moveDirection.z = 0;
+
+		return moveDirection;
+
 	}
 }
 

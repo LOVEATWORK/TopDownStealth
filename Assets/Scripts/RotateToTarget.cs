@@ -33,8 +33,12 @@ public class RotateToTarget : MonoBehaviour {
 			Debug.DrawLine (transform.position, spotted.gameObject.transform.position, Color.green);
 			StartCoroutine(RotateTowardsObject(spotted.gameObject.transform, strength));
 
-			if (pointingAtPlayer)
+			if (pointingAtPlayer) {
 				shotIndicator.SetActive(true);
+				WeaponScript weapon = GetComponent<WeaponScript>();
+				weapon.Attack(true);
+			}
+				
 
 		} else {
 

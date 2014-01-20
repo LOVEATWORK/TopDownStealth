@@ -7,6 +7,7 @@ public class WeaponScript : MonoBehaviour {
 
 	public Transform shotPrefab;
 	public float shootingRate = 0.25f;
+	public float shootingRange = 0.5f;
 
 	private float shotCooldown;
 
@@ -40,6 +41,8 @@ public class WeaponScript : MonoBehaviour {
 
 			if (shot != null)
 				shot.isEnemyShot = isEnemy;
+
+			shot.TTL = shootingRange;
 
 			// Make shot move in the correct direction
 			BasicMoveScript move = shotTransform.gameObject.GetComponent<BasicMoveScript>();

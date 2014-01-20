@@ -6,6 +6,7 @@ public class HealthScript : MonoBehaviour {
 	// Designer variables
 	public int HP = 1;
 	public bool isEnemy = true;
+	public Transform deathSprite;
 
 	void OnTriggerEnter2D(Collider2D collider){
 
@@ -24,9 +25,8 @@ public class HealthScript : MonoBehaviour {
 
 
 				if (HP <= 0) {
-
 					// DIE
-					Destroy(gameObject);
+					Kill();
 
 				}
 			}
@@ -43,5 +43,12 @@ public class HealthScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 	
+	}
+
+	void Kill() {
+
+
+		Destroy(gameObject);
+
 	}
 }

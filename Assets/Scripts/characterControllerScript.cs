@@ -19,20 +19,20 @@ public class characterControllerScript : MonoBehaviour {
 		Vector3 currentPosition = transform.position;
 
 		if (Input.GetButton ("Fire2")) {
+
 			moveDirection = getMoveDirection(Input.mousePosition);
 			moveDirection.Normalize();
 		
+			RotateToMouseClick (moveDirection.x, moveDirection.y);
 
-		RotateToMouseClick (moveDirection.x, moveDirection.y);
+			Vector3 target = moveDirection * moveSpeed + currentPosition;
 
-		Vector3 target = moveDirection * moveSpeed + currentPosition;
+			if (Mathf.Round(transform.position.x) != Mathf.Round(moveToward.x) && Mathf.Round(transform.position.y) != Mathf.Round(moveToward.y)) {
+				transform.position = Vector3.Lerp (currentPosition, target, Time.deltaTime);		
+			} else {
+				// rigidbody2D.velocity = Vector3.zero;
 
-		if (Mathf.Round(transform.position.x) != Mathf.Round(moveToward.x) && Mathf.Round(transform.position.y) != Mathf.Round(moveToward.y)) {
-			transform.position = Vector3.Lerp (currentPosition, target, Time.deltaTime);		
-		} else {
-			rigidbody2D.velocity = Vector3.zero;
-
-		}
+			}
 		}
 
 		if (Input.GetButtonDown ("Fire1")) {
@@ -42,9 +42,7 @@ public class characterControllerScript : MonoBehaviour {
 			moveDirection = getMoveDirection(Input.mousePosition);
 			// moveDirection.Normalize();
 
-			// RotateToMouseClick(moveDirection.x, moveDirection.y);
-			transform.rotation = Quaternion.Euler(moveDirection);
-
+			RotateToMouseClick (moveDirection.x, moveDirection.y);
 
 			WeaponScript weapon = GetComponent<WeaponScript>();
 
@@ -60,7 +58,9 @@ public class characterControllerScript : MonoBehaviour {
 	void RotateToMouseClick(float x, float y) {
 
 		float targetAngle = Mathf.Atan2 (y, x) * Mathf.Rad2Deg;
-		transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, targetAngle), turnSpeed * Time.deltaTime);
+		// transform.rotation = Quaternion.Slerp (transform.rotation, Quaternion.Euler (0, 0, targetAngle), turnSpeed * Time.deltaTime);
+		transform.rotation = Quaternion.Euler (0, 0, targetAngle);
+
 
 	}
 
